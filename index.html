@@ -4,141 +4,154 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ImmoPixels Board</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f1117;
-  --bg2: #161b24;
-  --bg3: #1c2333;
-  --bg4: #222940;
-  --col: #1a2035;
-  --border: #2a3450;
-  --border2: #344060;
-  --gold: #d4a853;
-  --gold2: #f0c878;
-  --gd: #d4a85322;
-  --blue: #5b9cf6;
-  --green: #4cde8a;
-  --red: #f97066;
-  --yel: #f6c94e;
-  --pur: #a78bfa;
-  --t1: #e8edf5;
-  --t2: #8b9bc0;
-  --t3: #4a5572;
-  --card-r: 10px;
-  --col-w: 280px;
+  --bg:    #f4f2ef;
+  --bg2:   #ffffff;
+  --bg3:   #eeebe6;
+  --bg4:   #e4e0d9;
+  --border:#ddd9d2;
+  --brd2:  #c8c3ba;
+  --gold:  #b8892a;
+  --gold2: #d4a845;
+  --gdbg:  #b8892a14;
+  --gdbr:  #b8892a35;
+  --blue:  #1d5ec7;
+  --bluebg:#1d5ec712;
+  --bluebr:#1d5ec730;
+  --green: #15803d;
+  --grbg:  #15803d12;
+  --grbr:  #15803d30;
+  --red:   #b91c1c;
+  --rdbg:  #b91c1c12;
+  --rdbr:  #b91c1c30;
+  --yel:   #a16207;
+  --yelbg: #a1620712;
+  --yelbr: #a1620730;
+  --pur:   #6d28d9;
+  --purbg: #6d28d912;
+  --purbr: #6d28d930;
+  --t1:    #1c1a16;
+  --t2:    #4a4640;
+  --t3:    #8a8278;
+  --cw:    275px;
+  --sh:    0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --sh2:   0 4px 20px rgba(0,0,0,.10);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:var(--t1);overflow:hidden}
-::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
 
-/* TOPBAR */
-.tb{height:50px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0;flex-shrink:0;z-index:200;position:relative}
-.tb-logo{display:flex;align-items:center;gap:9px;padding:0 18px;border-right:1px solid var(--border);height:100%}
-.lmark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#d4a853,#8a5e20);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:11px;color:#0f1117}
+/* TOP */
+.tb{height:52px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;flex-shrink:0;box-shadow:var(--sh)}
+.tb-logo{display:flex;align-items:center;gap:10px;padding:0 18px;border-right:1px solid var(--border);height:100%}
+.logo-mark{width:32px;height:32px;background:#1c1a16;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-mark svg{width:20px;height:20px}
+.logo-wordmark{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#1c1a16;letter-spacing:-.2px}
+.logo-pipe{width:1px;height:18px;background:var(--border);margin:0 6px}
+.logo-tag{font-size:11px;color:var(--t3);font-weight:500}
 .tb-nav{display:flex;align-items:center;height:100%;padding:0 6px}
-.tbn{display:flex;align-items:center;gap:6px;padding:0 12px;height:100%;font-size:13px;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
-.tbn:hover{color:var(--t2)}
-.tbn.act{color:var(--gold);border-bottom-color:var(--gold)}
+.tbn{padding:0 13px;height:100%;display:flex;align-items:center;font-size:13px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;user-select:none;gap:5px}
+.tbn:hover{color:var(--t2)}.tbn.act{color:var(--gold);border-bottom-color:var(--gold)}
 .tb-r{margin-left:auto;display:flex;align-items:center;gap:8px;padding:0 16px}
-.sync-pill{display:flex;align-items:center;gap:5px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--green);font-family:'DM Mono',monospace;cursor:pointer}
-.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.ava{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#8a5e20);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0f1117;cursor:pointer}
+.sync-btn{display:flex;align-items:center;gap:6px;background:var(--grbg);border:1px solid var(--grbr);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--green);cursor:pointer;transition:all .15s}
+.sync-btn:hover{box-shadow:var(--sh)}
+.dot{width:6px;height:6px;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.user-btn{display:flex;align-items:center;gap:7px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 12px 4px 5px;cursor:pointer;font-size:12px;font-weight:500;color:var(--t2)}
+.uav{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),#8a5e20);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
 
-/* BOARD TOOLBAR */
-.btb{height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;padding:0 16px;flex-shrink:0}
-.bname{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;color:var(--t1);margin-right:4px}
-.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:inherit;transition:all .15s;white-space:nowrap}
-.btn-p{background:var(--gold);color:#0f1117;font-weight:600}.btn-p:hover{background:var(--gold2)}
-.btn-g{background:none;border:1px solid var(--border2);color:var(--t2)}.btn-g:hover{border-color:var(--gold);color:var(--gold)}
-.btn-ghost{background:none;border:none;color:var(--t3);padding:5px 8px}.btn-ghost:hover{color:var(--t2);background:var(--bg3)}
-.divv{width:1px;height:20px;background:var(--border);margin:0 4px}
-.filter-chip{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;color:var(--t3);cursor:pointer}
-.filter-chip.on{border-color:#d4a85355;background:var(--gd);color:var(--gold)}
-.av-sm{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0}
+/* TOOLBAR */
+.btb{height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 16px;flex-shrink:0}
+.bname{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--t1)}
+.sep{width:1px;height:18px;background:var(--border);margin:0 2px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .15s;white-space:nowrap}
+.btn-p{background:var(--gold);color:#fff}.btn-p:hover{background:var(--gold2);box-shadow:0 2px 8px rgba(184,137,42,.3)}
+.btn-g{background:none;border:1.5px solid var(--brd2);color:var(--t2)}.btn-g:hover{border-color:var(--gold);color:var(--gold);background:var(--gdbg)}
+.btn-q{background:none;border:none;color:var(--t3);padding:4px 8px;border-radius:6px;font-size:12px;font-family:inherit;cursor:pointer}.btn-q:hover{background:var(--bg3);color:var(--t1)}
+.chip{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1.5px solid var(--border);border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;color:var(--t3);cursor:pointer;transition:all .15s;user-select:none}
+.chip:hover{border-color:var(--brd2)}
+.chip.on{background:var(--gdbg);border-color:var(--gdbr);color:var(--gold)}
+.chip.on-b{background:var(--bluebg);border-color:var(--bluebr);color:var(--blue)}
+.chip.on-p{background:var(--purbg);border-color:var(--purbr);color:var(--pur)}
+.av-xs{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;flex-shrink:0}
 
 /* BOARD */
-.board-wrap{flex:1;overflow-x:auto;overflow-y:hidden;padding:16px;display:flex;gap:12px;align-items:flex-start}
-.board-layout{display:flex;gap:12px;align-items:flex-start;min-height:100%;height:100%}
+.bwrap{flex:1;overflow-x:auto;overflow-y:hidden;padding:14px 18px;display:flex}
+.blayout{display:flex;gap:11px;align-items:flex-start;height:100%}
 
-/* COLUMN */
-.col{width:var(--col-w);min-width:var(--col-w);background:var(--col);border:1px solid var(--border);border-radius:12px;display:flex;flex-direction:column;max-height:calc(100vh - 114px);flex-shrink:0}
-.col.drag-over{border-color:var(--gold);box-shadow:0 0 0 2px var(--gd)}
-.col-head{padding:11px 14px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);flex-shrink:0}
-.col-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
-.col-title{font-size:12px;font-weight:600;color:var(--t1);flex:1}
-.col-count{background:var(--bg4);border-radius:4px;padding:1px 6px;font-size:10px;color:var(--t3);font-family:'DM Mono',monospace}
-.col-menu{background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:0 2px;line-height:1}
-.col-body{overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:7px;flex:1}
-.col-add{padding:8px 10px;border-top:1px solid var(--border);flex-shrink:0}
-.col-add-btn{width:100%;background:none;border:1px dashed var(--border2);border-radius:7px;padding:7px;font-size:12px;color:var(--t3);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s}
-.col-add-btn:hover{border-color:var(--gold);color:var(--gold)}
+/* COL */
+.col{width:var(--cw);min-width:var(--cw);background:var(--bg3);border:1px solid var(--border);border-radius:11px;display:flex;flex-direction:column;max-height:calc(100vh - 116px);flex-shrink:0;transition:border-color .15s,box-shadow .15s}
+.col.over{border-color:var(--gold);box-shadow:0 0 0 3px var(--gdbg)}
+.ch{padding:11px 13px 9px;display:flex;align-items:center;gap:7px;flex-shrink:0}
+.cdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ctitle{font-size:12px;font-weight:700;color:var(--t1);flex:1}
+.ccnt{background:var(--bg4);border-radius:4px;padding:1px 6px;font-size:10px;font-weight:600;color:var(--t3)}
+.cmenu{background:none;border:none;color:var(--t3);cursor:pointer;font-size:15px;padding:2px 4px;border-radius:4px;line-height:1}.cmenu:hover{background:var(--bg4);color:var(--t1)}
+.csep{height:1px;background:var(--border);margin:0 11px}
+.cbody{overflow-y:auto;padding:9px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cadd{padding:7px 9px;flex-shrink:0}
+.cadd-btn{width:100%;background:none;border:1.5px dashed var(--brd2);border-radius:8px;padding:7px;font-size:12px;font-weight:500;color:var(--t3);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .15s}
+.cadd-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gdbg)}
 
 /* CARD */
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--card-r);padding:11px 12px;cursor:grab;transition:all .15s;user-select:none;position:relative}
-.card:hover{border-color:var(--border2);box-shadow:0 4px 16px #00000044;transform:translateY(-1px)}
-.card:active{cursor:grabbing;opacity:.85}
-.card.dragging{opacity:.4;border-style:dashed}
-.card.gcal::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blue);border-radius:var(--card-r) 0 0 var(--card-r)}
-.card.todo::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--pur);border-radius:var(--card-r) 0 0 var(--card-r)}
-.card-type{display:flex;align-items:center;gap:5px;margin-bottom:7px}
-.type-badge{display:flex;align-items:center;gap:3px;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px}
-.gcal-tag{background:#5b9cf620;color:var(--blue);border:1px solid #5b9cf633;font-family:'DM Mono',monospace;font-size:9px;padding:1px 5px;border-radius:3px}
-.card-title{font-size:13px;font-weight:600;color:var(--t1);line-height:1.35;margin-bottom:6px}
-.card-addr{font-size:11px;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;gap:4px}
-.card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:7px}
-.card-date{font-size:10px;color:var(--t3);display:flex;align-items:center;gap:3px;font-family:'DM Mono',monospace}
-.card-price{font-size:11px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace}
-.card-avs{display:flex;margin-left:auto}
-.card-av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;border:2px solid var(--bg2);flex-shrink:0}
-.tag{display:inline-flex;align-items:center;font-size:10px;font-weight:500;padding:1px 6px;border-radius:4px}
-.todo-check{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--border2);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;margin-right:6px;transition:all .15s}
-.todo-check.done{background:var(--green);border-color:var(--green)}
-.todo-title{font-size:13px;color:var(--t1);flex:1}
-.todo-title.done{text-decoration:line-through;color:var(--t3)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:10px 11px;cursor:grab;user-select:none;position:relative;box-shadow:var(--sh);transition:box-shadow .15s,transform .15s,border-color .15s}
+.card:hover{box-shadow:var(--sh2);transform:translateY(-1px);border-color:var(--brd2)}
+.card:active{cursor:grabbing}
+.card.dragging{opacity:.35;box-shadow:none}
+.card.gcal{border-left:3px solid var(--blue)}
+.card.todo{border-left:3px solid var(--pur)}
+.badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px}
+.gcal-tag{font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--bluebg);color:var(--blue);border:1px solid var(--bluebr)}
+.card-title{font-size:13px;font-weight:600;color:var(--t1);line-height:1.35;margin:5px 0 4px}
+.card-addr{font-size:11px;color:var(--t3);display:flex;align-items:center;gap:3px}
+.card-foot{display:flex;align-items:center;gap:5px;margin-top:8px;padding-top:7px;border-top:1px solid var(--border)}
+.card-date{font-size:10px;font-weight:500;color:var(--t3)}
+.card-price{font-size:11px;font-weight:700;color:var(--gold)}
+.avs{display:flex;margin-left:auto}
+.av{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;border:2px solid var(--bg2);flex-shrink:0}
+.todo-row{display:flex;align-items:flex-start;gap:8px}
+.chk{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--brd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;margin-top:1px;transition:all .15s}
+.chk.done{background:var(--green);border-color:var(--green)}
 
-/* ADD COLUMN */
-.add-col{width:240px;min-width:240px;background:var(--col);border:2px dashed var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;min-height:80px;transition:all .15s;flex-shrink:0}
-.add-col:hover{border-color:var(--gold);background:var(--bg3)}
-.add-col-inner{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--t3)}
-.add-col:hover .add-col-inner{color:var(--gold)}
+/* ADD COL */
+.add-col{width:220px;min-width:220px;border:2px dashed var(--brd2);border-radius:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;min-height:70px;transition:all .15s;flex-shrink:0;background:transparent}
+.add-col:hover{border-color:var(--gold);background:var(--gdbg)}
+.add-col:hover span{color:var(--gold)}
 
-/* DETAIL DRAWER */
-.drawer{position:fixed;top:0;right:-480px;width:460px;height:100vh;background:var(--bg2);border-left:1px solid var(--border);z-index:300;display:flex;flex-direction:column;transition:right .25s ease;overflow:hidden}
+/* DRAWER */
+.drawer{position:fixed;top:0;right:-470px;width:450px;height:100vh;background:var(--bg2);border-left:1px solid var(--border);z-index:300;display:flex;flex-direction:column;transition:right .25s ease;box-shadow:-4px 0 30px rgba(0,0,0,.08)}
 .drawer.open{right:0}
-.dr-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
-.dr-close{background:none;border:none;color:var(--t3);cursor:pointer;font-size:20px;padding:0;line-height:1}
-.dr-body{flex:1;overflow-y:auto;padding:18px 20px}
-.dr-section{margin-bottom:18px}
-.dr-label{font-size:10px;font-family:'DM Mono',monospace;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
-.dr-val{font-size:13px;color:var(--t1)}
-.dr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dr-field{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
-.dr-fl{font-size:10px;color:var(--t3);margin-bottom:3px;font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.5px}
-.dr-fv{font-size:13px;color:var(--t1);font-weight:600}
-.status-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
-.st-btn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:none;color:var(--t3);font-family:inherit;transition:all .15s}
-.st-btn.active{color:var(--t1)}
-.checklist-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
-.checklist-item:last-child{border-bottom:none}
-.dr-foot{padding:14px 20px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0}
-.inp{background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:7px 11px;font-size:13px;color:var(--t1);font-family:inherit;outline:none;width:100%}
-.inp:focus{border-color:#d4a85355}
+.dr-top{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0}
+.dr-x{background:none;border:none;color:var(--t3);cursor:pointer;font-size:18px;padding:3px 7px;border-radius:6px;line-height:1}.dr-x:hover{background:var(--bg3);color:var(--t1)}
+.dr-body{flex:1;overflow-y:auto;padding:16px 18px}
+.dlbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.dsec{margin-bottom:18px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
+.dfield{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:9px 11px}
+.dfl{font-size:10px;color:var(--t3);font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:.4px}
+.dfv{font-size:13px;color:var(--t1);font-weight:600}
+.st-row{display:flex;gap:5px;flex-wrap:wrap}
+.stb{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:none;color:var(--t3);font-family:inherit;transition:all .15s}
+.stb:hover{border-color:var(--brd2);color:var(--t2)}
+.stb.act{color:#fff}
+.cli{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.cli:last-child{border-bottom:none}
+.dr-foot{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:7px;flex-shrink:0;background:var(--bg2)}
+.inp{background:var(--bg3);border:1.5px solid var(--border);border-radius:7px;padding:7px 11px;font-size:13px;color:var(--t1);font-family:inherit;outline:none;width:100%;transition:border-color .15s}
+.inp:focus{border-color:var(--gold);background:var(--bg2)}
 
 /* MODAL */
-.mover{position:fixed;inset:0;background:#00000099;z-index:400;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mover{position:fixed;inset:0;background:rgba(28,26,22,.4);z-index:400;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .mover.open{display:flex}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:24px;width:480px;max-width:95vw}
-.modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:18px}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.lbl{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block}
-
-/* OVERLAY when drawer open */
-.overlay{position:fixed;inset:0;z-index:250;display:none}
-.overlay.on{display:block}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:13px;padding:24px;width:470px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.mtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.lbl{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;display:block}
+.ov{position:fixed;inset:0;z-index:250;display:none}.ov.on{display:block}
 </style>
 </head>
 <body style="display:flex;flex-direction:column;height:100vh">
@@ -146,158 +159,140 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 <!-- TOPBAR -->
 <div class="tb">
   <div class="tb-logo">
-    <div class="lmark">IP</div>
-    <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px">ImmoPixels</span>
+    <div class="logo-mark">
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M3 17V8.5l7-4 7 4V17" stroke="#b8892a" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M7.5 17v-5h5v5" stroke="#b8892a" stroke-width="1.4" stroke-linejoin="round"/>
+        <circle cx="10" cy="6" r="1.4" fill="#b8892a"/>
+      </svg>
+    </div>
+    <span class="logo-wordmark">ImmoPixels</span>
+    <div class="logo-pipe"></div>
+    <span class="logo-tag">Board</span>
   </div>
   <div class="tb-nav">
-    <div class="tbn">Spaces</div>
+    <div class="tbn">Ügyfelek</div>
     <div class="tbn act">📋 Board</div>
     <div class="tbn">📅 Naptár</div>
     <div class="tbn">📊 Riportok</div>
-    <div class="tbn">⚙ Beállítások</div>
   </div>
   <div class="tb-r">
-    <div class="sync-pill" onclick="syncGcal()">
-      <span class="sync-dot"></span>
+    <div class="sync-btn" onclick="syncGcal()">
+      <span class="dot" style="background:var(--green)"></span>
       <span id="sync-txt">GCal szinkron</span>
     </div>
-    <div class="ava">CD</div>
+    <div class="user-btn">
+      <div class="uav">CD</div>
+      <span>Cristian</span>
+    </div>
   </div>
 </div>
 
-<!-- BOARD TOOLBAR -->
+<!-- TOOLBAR -->
 <div class="btb">
   <span class="bname">ImmoPixels Board</span>
-  <div class="divv"></div>
-  <button class="btn btn-p" onclick="openModal('new-card')">+ Új kártya</button>
-  <button class="btn btn-g" onclick="openModal('new-col')">+ Oszlop</button>
-  <div class="divv"></div>
-  <div class="filter-chip on" onclick="this.classList.toggle('on')">
-    <span class="sync-dot" style="background:var(--blue)"></span> GCal job-ok
-  </div>
-  <div class="filter-chip on" onclick="this.classList.toggle('on')">
-    <span class="sync-dot" style="background:var(--pur)"></span> Saját todo
-  </div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">📷 Fotó</div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">🎞️ Reel</div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">🚁 Drón</div>
-  <div class="divv"></div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">
-    <div class="av-sm" style="background:#d4a85333;color:var(--gold)">CD</div> Cristian
-  </div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">
-    <div class="av-sm" style="background:#5b9cf622;color:var(--blue)">DB</div> Daniel
-  </div>
-  <div class="filter-chip" onclick="this.classList.toggle('on')">
-    <div class="av-sm" style="background:#4cde8a22;color:var(--green)">EL</div> Elias
-  </div>
-  <div style="margin-left:auto;display:flex;gap:6px">
-    <button class="btn-ghost btn" onclick="toggleView('board')" id="vbtn-board" style="color:var(--gold)">⊞ Board</button>
-    <button class="btn-ghost btn" onclick="toggleView('list')" id="vbtn-list">☰ Lista</button>
+  <div class="sep"></div>
+  <button class="btn btn-p" onclick="openM('new-card')">+ Új kártya</button>
+  <button class="btn btn-g" onclick="openM('new-col')">+ Oszlop</button>
+  <div class="sep"></div>
+  <div class="chip on-b" onclick="this.classList.toggle('on-b')"><span class="dot" style="background:var(--blue)"></span>GCal job-ok</div>
+  <div class="chip on-p" onclick="this.classList.toggle('on-p')"><span class="dot" style="background:var(--pur)"></span>Saját todo</div>
+  <div class="chip" onclick="this.classList.toggle('on')">📷 Fotó</div>
+  <div class="chip" onclick="this.classList.toggle('on')">🎞️ Reel</div>
+  <div class="chip" onclick="this.classList.toggle('on')">🚁 Drón</div>
+  <div class="sep"></div>
+  <div class="chip" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--gdbg);color:var(--gold)">CD</div>Cristian</div>
+  <div class="chip" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--bluebg);color:var(--blue)">DB</div>Daniel</div>
+  <div class="chip" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--grbg);color:var(--green)">EL</div>Elias</div>
+  <div style="margin-left:auto;display:flex;gap:3px">
+    <button class="btn-q btn" id="vb-b" style="color:var(--gold);background:var(--gdbg)" onclick="setView('board')">⊞ Board</button>
+    <button class="btn-q btn" id="vb-l" onclick="setView('list')">☰ Lista</button>
   </div>
 </div>
 
 <!-- BOARD -->
-<div class="board-wrap" id="board-wrap">
-  <div class="board-layout" id="board"></div>
-</div>
+<div class="bwrap" id="bwrap"><div class="blayout" id="board"></div></div>
 
-<!-- CARD DETAIL DRAWER -->
-<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<!-- OVERLAY + DRAWER -->
+<div class="ov" id="ov" onclick="closeDrawer()"></div>
 <div class="drawer" id="drawer">
-  <div class="dr-head">
-    <div>
-      <div id="dr-type" style="margin-bottom:6px"></div>
-      <div id="dr-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:var(--t1)"></div>
+  <div class="dr-top">
+    <div style="flex:1;min-width:0">
+      <div id="dr-badge" style="margin-bottom:7px"></div>
+      <div id="dr-title" style="font-family:'Syne',sans-serif;font-weight:700;font-size:17px;line-height:1.3"></div>
     </div>
-    <button class="dr-close" onclick="closeDrawer()">✕</button>
+    <button class="dr-x" onclick="closeDrawer()">✕</button>
   </div>
   <div class="dr-body">
-    <div class="dr-section">
-      <div class="dr-label">Státusz</div>
-      <div class="status-row" id="dr-status-row"></div>
-    </div>
-    <div class="dr-grid" style="margin-bottom:18px" id="dr-fields"></div>
-    <div class="dr-section" id="dr-checklist-wrap">
-      <div class="dr-label">Checklist</div>
-      <div id="dr-checklist"></div>
-      <div style="display:flex;gap:7px;margin-top:8px">
-        <input class="inp" id="cl-inp" placeholder="+ Elem hozzáadása..." style="font-size:12px;padding:6px 10px">
-        <button class="btn btn-g" style="padding:5px 10px;font-size:12px" onclick="addCheckItem()">+</button>
+    <div class="dsec"><div class="dlbl">Státusz</div><div class="st-row" id="dr-statuses"></div></div>
+    <div class="dgrid" id="dr-fields"></div>
+    <div class="dsec">
+      <div class="dlbl">Checklist</div>
+      <div id="dr-cl"></div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <input class="inp" id="cl-inp" placeholder="+ Elem hozzáadása..." onkeydown="if(event.key==='Enter')addCI()">
+        <button class="btn btn-g" style="flex-shrink:0;padding:5px 11px" onclick="addCI()">+</button>
       </div>
     </div>
-    <div class="dr-section">
-      <div class="dr-label">Megjegyzés</div>
-      <textarea class="inp" rows="3" placeholder="Megjegyzés..." style="resize:none;font-size:12px" id="dr-note"></textarea>
-    </div>
+    <div class="dsec"><div class="dlbl">Megjegyzés</div><textarea class="inp" id="dr-note" rows="3" style="resize:none" placeholder="Ide jöhetnek a megjegyzések..."></textarea></div>
   </div>
   <div class="dr-foot">
-    <button class="btn btn-p" style="flex:1;justify-content:center" onclick="closeDrawer()">✓ Mentés</button>
-    <button class="btn btn-g" onclick="moveToNext()">→ Következő státusz</button>
-    <button class="btn btn-g" style="color:var(--red);border-color:#f9706633" onclick="deleteCard()">🗑</button>
+    <button class="btn btn-p" style="flex:1;justify-content:center" onclick="save()">✓ Mentés</button>
+    <button class="btn btn-g" onclick="nextStatus()">→ Következő</button>
+    <button class="btn btn-g" style="color:var(--red);border-color:var(--rdbr)" onclick="delCard()">🗑</button>
   </div>
 </div>
 
 <!-- MODAL: ÚJ KÁRTYA -->
 <div class="mover" id="modal-new-card">
   <div class="modal">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <span class="modal-title" style="margin:0">+ Új kártya</span>
-      <button style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:18px" onclick="closeModal('new-card')">✕</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+      <div class="mtitle" style="margin:0">+ Új kártya</div>
+      <button style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px;padding:3px 7px;border-radius:6px" onclick="closeM('new-card')">✕</button>
     </div>
-    <div style="display:flex;gap:8px;margin-bottom:12px">
-      <button class="btn btn-g" id="type-gcal" onclick="setCardType('gcal')" style="color:var(--blue);border-color:#5b9cf633">📅 GCal job</button>
-      <button class="btn btn-g" id="type-todo" onclick="setCardType('todo')" style="color:var(--pur);border-color:#a78bfa33">✓ Todo</button>
-      <button class="btn btn-g" id="type-manual" onclick="setCardType('manual')">📷 Manuális job</button>
+    <div style="display:flex;gap:6px;margin-bottom:13px">
+      <button class="btn" id="nt-gcal" onclick="setT('gcal')" style="background:var(--bluebg);color:var(--blue);border:1.5px solid var(--bluebr)">📅 GCal job</button>
+      <button class="btn btn-g" id="nt-todo" onclick="setT('todo')">✓ Todo</button>
+      <button class="btn btn-g" id="nt-man" onclick="setT('man')">📷 Manuális</button>
+    </div>
+    <div style="margin-bottom:9px"><label class="lbl">Cím / Helyszín</label><input class="inp" id="nc-t" placeholder="pl. Heidelberger Str. 12"></div>
+    <div class="fg">
+      <div><label class="lbl">Dátum</label><input class="inp" type="date" id="nc-d" value="2026-05-20"></div>
+      <div><label class="lbl">Időpont</label><input class="inp" type="time" id="nc-ti" value="10:00"></div>
     </div>
     <div class="fg">
-      <div style="grid-column:1/-1"><label class="lbl">Cím</label><input class="inp" id="nc-title" placeholder="pl. Heidelberger Str. 12, Mannheim"></div>
-    </div>
-    <div class="fg">
-      <div><label class="lbl">Dátum</label><input class="inp" type="date" id="nc-date" value="2026-05-20"></div>
-      <div><label class="lbl">Időpont</label><input class="inp" type="time" id="nc-time" value="10:00"></div>
-    </div>
-    <div class="fg">
-      <div><label class="lbl">Szolgáltatás</label>
-        <select class="inp" id="nc-type">
-          <option value="foto">📷 Fotó alap</option>
-          <option value="video">🎬 Videó</option>
-          <option value="dron">🚁 Drón</option>
-          <option value="reel">🎞️ ImmoReels</option>
+      <div><label class="lbl">Típus</label>
+        <select class="inp" id="nc-s">
+          <option value="foto">📷 Fotó alap</option><option value="video">🎬 Videó</option>
+          <option value="dron">🚁 Drón</option><option value="reel">🎞️ ImmoReels</option>
           <option value="foto-dron">📷🚁 Fotó + Drón</option>
         </select>
       </div>
-      <div><label class="lbl">Ár (€)</label><input class="inp" type="number" id="nc-price" placeholder="280"></div>
+      <div><label class="lbl">Ár (€)</label><input class="inp" type="number" id="nc-p" placeholder="280"></div>
     </div>
-    <div style="margin-bottom:12px"><label class="lbl">Ügyfél</label>
-      <select class="inp" id="nc-client">
-        <option>RE/MAX Mannheim</option>
-        <option>Engel & Völkers</option>
-        <option>Müller Immobilien</option>
-        <option>Volksbank Immobilien</option>
-        <option>Sparkasse Immo</option>
-        <option>+ Új ügyfél</option>
+    <div style="margin-bottom:9px"><label class="lbl">Ügyfél</label>
+      <select class="inp" id="nc-cl">
+        <option>RE/MAX Mannheim</option><option>Engel & Völkers</option>
+        <option>Müller Immobilien</option><option>Volksbank Immobilien</option>
+        <option>Sparkasse Immo</option><option>+ Új ügyfél</option>
       </select>
     </div>
-    <div style="margin-bottom:12px"><label class="lbl">Csapat</label>
-      <div style="display:flex;gap:6px" id="nc-team">
-        <div class="filter-chip on" data-person="CD" onclick="togglePerson(this)"><div class="av-sm" style="background:#d4a85333;color:var(--gold)">CD</div> Cristian</div>
-        <div class="filter-chip" data-person="DB" onclick="togglePerson(this)"><div class="av-sm" style="background:#5b9cf622;color:var(--blue)">DB</div> Daniel</div>
-        <div class="filter-chip" data-person="EL" onclick="togglePerson(this)"><div class="av-sm" style="background:#4cde8a22;color:var(--green)">EL</div> Elias</div>
+    <div style="margin-bottom:9px"><label class="lbl">Csapat</label>
+      <div style="display:flex;gap:5px" id="nc-team">
+        <div class="chip on" data-p="CD" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--gdbg);color:var(--gold)">CD</div>Cristian</div>
+        <div class="chip" data-p="DB" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--bluebg);color:var(--blue)">DB</div>Daniel</div>
+        <div class="chip" data-p="EL" onclick="this.classList.toggle('on')"><div class="av-xs" style="background:var(--grbg);color:var(--green)">EL</div>Elias</div>
       </div>
     </div>
-    <div style="margin-bottom:16px"><label class="lbl">Oszlop</label>
+    <div style="margin-bottom:15px"><label class="lbl">Oszlop</label>
       <select class="inp" id="nc-col">
-        <option value="0">📥 Beérkező</option>
-        <option value="1">✓ Visszaigazolt</option>
-        <option value="2">📷 Elvégzés alatt</option>
-        <option value="3">📦 Leadás</option>
-        <option value="4">💶 Számlázás</option>
-        <option value="5">✅ Kész</option>
+        <option value="0">📥 Beérkező</option><option value="1">✓ Visszaigazolt</option>
+        <option value="2">📷 Elvégzés alatt</option><option value="3">📦 Leadás</option>
+        <option value="4">💶 Számlázás</option><option value="5">✅ Kész</option>
       </select>
     </div>
-    <div style="display:flex;gap:8px;justify-content:flex-end">
-      <button class="btn btn-g" onclick="closeModal('new-card')">Mégsem</button>
+    <div style="display:flex;gap:7px;justify-content:flex-end">
+      <button class="btn btn-g" onclick="closeM('new-card')">Mégsem</button>
       <button class="btn btn-p" onclick="createCard()">+ Létrehozás</button>
     </div>
   </div>
@@ -305,399 +300,180 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 
 <!-- MODAL: ÚJ OSZLOP -->
 <div class="mover" id="modal-new-col">
-  <div class="modal" style="width:340px">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <span class="modal-title" style="margin:0">+ Új oszlop</span>
-      <button style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:18px" onclick="closeModal('new-col')">✕</button>
+  <div class="modal" style="width:320px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+      <div class="mtitle" style="margin:0">+ Új oszlop</div>
+      <button style="background:none;border:none;cursor:pointer;color:var(--t3);font-size:18px" onclick="closeM('new-col')">✕</button>
     </div>
-    <div style="margin-bottom:12px"><label class="lbl">Oszlop neve</label><input class="inp" id="new-col-name" placeholder="pl. Minőségellenőrzés"></div>
+    <div style="margin-bottom:11px"><label class="lbl">Neve</label><input class="inp" id="ncol-n" placeholder="pl. Minőségellenőrzés"></div>
     <div style="margin-bottom:16px"><label class="lbl">Szín</label>
-      <div style="display:flex;gap:8px;margin-top:4px">
-        <div style="width:24px;height:24px;border-radius:50%;background:#5b9cf6;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#5b9cf6')"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:#d4a853;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#d4a853')"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:#4cde8a;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#4cde8a')"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:#a78bfa;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#a78bfa')"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:#f97066;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#f97066')"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:#f6c94e;cursor:pointer;border:2px solid transparent" onclick="selColor(this,'#f6c94e')"></div>
+      <div style="display:flex;gap:7px;margin-top:5px" id="colpicks">
+        <div style="width:24px;height:24px;border-radius:50%;background:#1d5ec7;cursor:pointer;transition:.15s" onclick="pickC(this,'#1d5ec7')"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:#b8892a;cursor:pointer;transition:.15s" onclick="pickC(this,'#b8892a')"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:#15803d;cursor:pointer;transition:.15s" onclick="pickC(this,'#15803d')"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:#6d28d9;cursor:pointer;transition:.15s" onclick="pickC(this,'#6d28d9')"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:#b91c1c;cursor:pointer;transition:.15s" onclick="pickC(this,'#b91c1c')"></div>
+        <div style="width:24px;height:24px;border-radius:50%;background:#a16207;cursor:pointer;transition:.15s" onclick="pickC(this,'#a16207')"></div>
       </div>
     </div>
-    <div style="display:flex;gap:8px;justify-content:flex-end">
-      <button class="btn btn-g" onclick="closeModal('new-col')">Mégsem</button>
-      <button class="btn btn-p" onclick="addColumn()">+ Oszlop létrehozás</button>
+    <div style="display:flex;gap:7px;justify-content:flex-end">
+      <button class="btn btn-g" onclick="closeM('new-col')">Mégsem</button>
+      <button class="btn btn-p" onclick="addCol()">Létrehozás</button>
     </div>
   </div>
 </div>
 
 <script>
-// ─── DATA ──────────────────────────────────────────────
-const TEAM_COLORS = {CD:'#d4a85333',DB:'#5b9cf622',EL:'#4cde8a22'};
-const TEAM_TEXT   = {CD:'var(--gold)',DB:'var(--blue)',EL:'var(--green)'};
-const TYPE_MAP    = {foto:{icon:'📷',label:'Fotó',color:'#d4a853'},video:{icon:'🎬',label:'Videó',color:'#5b9cf6'},dron:{icon:'🚁',label:'Drón',color:'#4cde8a'},reel:{icon:'🎞️',label:'Reel',color:'#a78bfa'},'foto-dron':{icon:'📷🚁',label:'F+D',color:'#f6c94e'}};
+const TC={CD:'#b8892a18',DB:'#1d5ec712',EL:'#15803d12'};
+const TT={CD:'var(--gold)',DB:'var(--blue)',EL:'var(--green)'};
+const T={
+  foto:{i:'📷',l:'Fotó',c:'#b8892a',bg:'#b8892a14',br:'#b8892a30'},
+  video:{i:'🎬',l:'Videó',c:'#1d5ec7',bg:'#1d5ec712',br:'#1d5ec730'},
+  dron:{i:'🚁',l:'Drón',c:'#15803d',bg:'#15803d12',br:'#15803d30'},
+  reel:{i:'🎞️',l:'Reel',c:'#6d28d9',bg:'#6d28d912',br:'#6d28d930'},
+  'foto-dron':{i:'📷🚁',l:'F+D',c:'#a16207',bg:'#a1620712',br:'#a1620730'},
+};
 
-let newColColor = '#5b9cf6';
-let activeCard  = null;
-let dragCard    = null;
-let dragFromCol = null;
+let ncColor='#1d5ec7', selT='gcal', active=null, dci=null, dki=null;
 
-const cols = [
-  {id:'beerkező', title:'📥 Beérkező', dot:'#8b9bc0', cards:[
-    {id:'c1',gcal:true,type:'foto',title:'Heidelberger Str. 12',addr:'Mannheim',client:'RE/MAX',date:'05-13',time:'09:30',price:280,team:['CD'],note:'',checklist:[{t:'Kamera csekk',d:false},{t:'Drón engedély',d:false}]},
-    {id:'c2',gcal:true,type:'reel',title:'Parkring 5',addr:'Ludwigshafen',client:'Engel & Völkers',date:'05-13',time:'11:00',price:520,team:['DB','CD'],note:'',checklist:[]},
+const cols=[
+  {id:'c0',title:'📥 Beérkező',dot:'#9c9589',cards:[
+    {id:'k1',gcal:1,type:'foto',title:'Heidelberger Str. 12',addr:'Mannheim',client:'RE/MAX',date:'05-13',time:'09:30',price:280,team:['CD'],note:'',cl:[{t:'Kamera csekk',d:0},{t:'Parkolás nézni',d:0}]},
+    {id:'k2',gcal:1,type:'reel',title:'Parkring 5',addr:'Ludwigshafen',client:'Engel & Völkers',date:'05-13',time:'11:00',price:520,team:['DB','CD'],note:'',cl:[]},
   ]},
-  {id:'visszaigazolt', title:'✓ Visszaigazolt', dot:'#5b9cf6', cards:[
-    {id:'c3',gcal:true,type:'foto',title:'Seckenheimer Landstr. 55',addr:'Mannheim',client:'Volksbank',date:'05-13',time:'16:30',price:260,team:['CD'],note:'',checklist:[]},
-    {id:'c4',gcal:true,type:'dron',title:'Winzerstr. 8 — Neustadt',addr:'Neustadt a.d.W.',client:'Müller Immo',date:'05-14',time:'14:00',price:480,team:['CD','EL'],note:'Drón üzemanyag',checklist:[{t:'Repülési engedély',d:true},{t:'Időjárás check',d:false}]},
-    {id:'ct1',todo:true,title:'Sandra Kleinnek árlistát küldeni',addr:'',client:'RE/MAX',date:'05-13',time:'',price:0,team:['CD'],note:'',checklist:[]},
+  {id:'c1',title:'✓ Visszaigazolt',dot:'#1d5ec7',cards:[
+    {id:'k3',gcal:1,type:'foto',title:'Seckenheimer Landstr. 55',addr:'Mannheim',client:'Volksbank',date:'05-13',time:'16:30',price:260,team:['CD'],note:'',cl:[]},
+    {id:'k4',gcal:1,type:'dron',title:'Winzerstr. 8 — Neustadt',addr:'Neustadt a.d.W.',client:'Müller Immo',date:'05-14',time:'14:00',price:480,team:['CD','EL'],note:'Drón üzemanyag!',cl:[{t:'Repülési engedély',d:1},{t:'Időjárás check',d:0}]},
+    {id:'k5',todo:1,title:'Sandra Kleinnek ImmoReels ajánlatot küldeni',client:'RE/MAX',date:'05-14',time:'',price:0,team:['CD'],note:'',cl:[]},
   ]},
-  {id:'elvegzes', title:'📷 Elvégzés alatt', dot:'#f6c94e', cards:[
-    {id:'c5',gcal:true,type:'foto',title:'Käfertaler Str. 190',addr:'Mannheim',client:'Schmidt (privát)',date:'05-09',time:'15:00',price:220,team:['CD'],note:'Parkolás az udvarban',checklist:[{t:'RAW fájlok mentés',d:true},{t:'Szerkesztés',d:false}]},
+  {id:'c2',title:'📷 Elvégzés alatt',dot:'#a16207',cards:[
+    {id:'k6',gcal:1,type:'foto',title:'Käfertaler Str. 190',addr:'Mannheim',client:'Schmidt (privát)',date:'05-09',time:'15:00',price:220,team:['CD'],note:'Parkolás az udvarban',cl:[{t:'RAW mentés',d:1},{t:'Lightroom szerkesztés',d:0}]},
   ]},
-  {id:'leadás', title:'📦 Leadás', dot:'#a78bfa', cards:[
-    {id:'c6',gcal:true,type:'reel',title:'Friedrichsplatz 8',addr:'Mannheim',client:'Volksbank',date:'05-10',time:'11:00',price:350,team:['DB'],note:'',checklist:[{t:'Drive link generálás',d:true},{t:'Email küldés ügyfélnek',d:false}]},
+  {id:'c3',title:'📦 Leadás',dot:'#6d28d9',cards:[
+    {id:'k7',gcal:1,type:'reel',title:'Friedrichsplatz 8',addr:'Mannheim',client:'Volksbank',date:'05-10',time:'11:00',price:350,team:['DB'],note:'',cl:[{t:'Drive link',d:1},{t:'Email küldés',d:0}]},
+    {id:'k8',todo:1,title:'Müller #039 késedelmes számla',client:'Müller Immo',date:'05-12',price:0,team:['CD'],note:'',cl:[]},
   ]},
-  {id:'szamlazas', title:'💶 Számlázás', dot:'#f97066', cards:[
-    {id:'c7',gcal:true,type:'foto',title:'Schillerstr. 18',addr:'Heidelberg',client:'Engel & Völkers',date:'05-07',time:'10:00',price:280,team:['CD'],note:'',checklist:[]},
-    {id:'ct2',todo:true,title:'Müller #039 késedelmes számla emlékeztető',addr:'',client:'Müller Immo',date:'05-12',time:'',price:0,team:['NS'],note:'',checklist:[]},
+  {id:'c4',title:'💶 Számlázás',dot:'#b91c1c',cards:[
+    {id:'k9',gcal:1,type:'foto',title:'Schillerstr. 18',addr:'Heidelberg',client:'Engel & Völkers',date:'05-07',time:'10:00',price:280,team:['CD'],note:'',cl:[]},
   ]},
-  {id:'kesz', title:'✅ Kész', dot:'#4cde8a', cards:[
-    {id:'c8',gcal:true,type:'foto',title:'Rheinuferstr. 22',addr:'Mannheim',client:'RE/MAX',date:'05-06',time:'09:00',price:280,team:['CD'],note:'',checklist:[{t:'Képek elkészültek',d:true},{t:'Email elküldve',d:true},{t:'Kiszámlázva',d:true}]},
-    {id:'c9',gcal:true,type:'video',title:'Tattersallstr. 1',addr:'Mannheim',client:'Sparkasse',date:'05-04',time:'13:00',price:350,team:['DB'],note:'',checklist:[{t:'Vágás',d:true},{t:'Elküldve',d:true}]},
+  {id:'c5',title:'✅ Kész',dot:'#15803d',cards:[
+    {id:'k10',gcal:1,type:'foto',title:'Rheinuferstr. 22',addr:'Mannheim',client:'RE/MAX',date:'05-06',time:'09:00',price:280,team:['CD'],note:'',cl:[{t:'Képek kész',d:1},{t:'Email elküldve',d:1},{t:'Kiszámlázva',d:1}]},
+    {id:'k11',gcal:1,type:'video',title:'Tattersallstr. 1',addr:'Mannheim',client:'Sparkasse',date:'05-04',time:'13:00',price:350,team:['DB'],note:'',cl:[{t:'Vágás',d:1},{t:'Elküldve',d:1}]},
   ]},
 ];
 
-// ─── RENDER ────────────────────────────────────────────
-function renderBoard() {
-  const b = document.getElementById('board');
-  b.innerHTML = '';
-  cols.forEach((col, ci) => {
-    const el = document.createElement('div');
-    el.className = 'col';
-    el.dataset.colidx = ci;
-    el.innerHTML = `
-      <div class="col-head">
-        <div class="col-dot" style="background:${col.dot}"></div>
-        <div class="col-title">${col.title}</div>
-        <div class="col-count">${col.cards.length}</div>
-        <button class="col-menu" onclick="colMenu(${ci})">⋯</button>
-      </div>
-      <div class="col-body" id="colbody-${ci}"></div>
-      <div class="col-add"><button class="col-add-btn" onclick="quickAdd(${ci})">+ Kártya hozzáadás</button></div>
-    `;
+function render(){
+  const b=document.getElementById('board');b.innerHTML='';
+  cols.forEach((col,ci)=>{
+    const el=document.createElement('div');el.className='col';
+    el.innerHTML=`<div class="ch"><div class="cdot" style="background:${col.dot}"></div><div class="ctitle">${col.title}</div><div class="ccnt">${col.cards.length}</div><button class="cmenu" onclick="renameCol(${ci})">⋯</button></div><div class="csep"></div><div class="cbody" id="cb${ci}"></div><div class="cadd"><button class="cadd-btn" onclick="quickAdd(${ci})">+ Kártya hozzáadás</button></div>`;
     b.appendChild(el);
-    const body = document.getElementById(`colbody-${ci}`);
-    col.cards.forEach((card, ki) => {
-      body.appendChild(makeCard(card, ci, ki));
-    });
-    // drag-over events on col-body
-    body.addEventListener('dragover', e => {
-      e.preventDefault();
-      el.classList.add('drag-over');
-    });
-    body.addEventListener('dragleave', e => {
-      if (!el.contains(e.relatedTarget)) el.classList.remove('drag-over');
-    });
-    body.addEventListener('drop', e => {
-      e.preventDefault();
-      el.classList.remove('drag-over');
-      if (dragCard === null || dragFromCol === null) return;
-      if (dragFromCol === ci) return;
-      const card = cols[dragFromCol].cards.splice(dragCard, 1)[0];
-      cols[ci].cards.push(card);
-      renderBoard();
+    const body=document.getElementById('cb'+ci);
+    col.cards.forEach((card,ki)=>body.appendChild(mkCard(card,ci,ki)));
+    body.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('over')});
+    body.addEventListener('dragleave',e=>{if(!el.contains(e.relatedTarget))el.classList.remove('over')});
+    body.addEventListener('drop',e=>{
+      e.preventDefault();el.classList.remove('over');
+      if(dci===null||dci===ci)return;
+      const c=cols[dci].cards.splice(dki,1)[0];cols[ci].cards.push(c);render();
     });
   });
-  // Add column button
-  const addEl = document.createElement('div');
-  addEl.className = 'add-col';
-  addEl.onclick = () => openModal('new-col');
-  addEl.innerHTML = `<div class="add-col-inner"><span style="font-size:18px">+</span><span>Oszlop hozzáadása</span></div>`;
-  b.appendChild(addEl);
+  const ac=document.createElement('div');ac.className='add-col';ac.onclick=()=>openM('new-col');
+  ac.innerHTML='<div style="display:flex;align-items:center;gap:6px"><span style="font-size:20px;color:var(--t3)">+</span><span style="font-size:13px;font-weight:500;color:var(--t3)">Oszlop hozzáadása</span></div>';
+  b.appendChild(ac);
 }
 
-function makeCard(card, ci, ki) {
-  const el = document.createElement('div');
-  el.className = 'card' + (card.gcal ? ' gcal' : '') + (card.todo ? ' todo' : '');
-  el.draggable = true;
-  el.dataset.ci = ci;
-  el.dataset.ki = ki;
-
-  const t = TYPE_MAP[card.type] || {};
-  const doneChecks = card.checklist.filter(x=>x.d).length;
-
-  if (card.todo) {
-    el.innerHTML = `
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <div class="todo-check ${card.checklist.length && doneChecks===card.checklist.length?'done':''}" onclick="event.stopPropagation();toggleTodo(${ci},${ki})">
-          ${doneChecks===card.checklist.length&&card.checklist.length?'<svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" fill="none"/></svg>':''}
-        </div>
-        <div style="flex:1">
-          <div class="todo-title ${doneChecks===card.checklist.length&&card.checklist.length?'done':''}">${card.title}</div>
-          <div class="card-meta" style="margin-top:5px">
-            ${card.date?`<div class="card-date">📅 ${card.date}</div>`:''}
-            <div class="card-av" style="background:${TEAM_COLORS[card.team[0]]||'#333'};color:${TEAM_TEXT[card.team[0]]||'#fff'};margin-left:auto">${card.team[0]}</div>
-          </div>
-        </div>
-      </div>
-      <div style="position:absolute;top:8px;right:8px;background:var(--pd,#a78bfa22);border-radius:3px;padding:1px 5px;font-size:9px;color:var(--pur)">TODO</div>
-    `;
+function mkCard(card,ci,ki){
+  const el=document.createElement('div');
+  el.className='card'+(card.gcal?' gcal':'')+(card.todo?' todo':'');
+  el.draggable=true;
+  const t=T[card.type]||T.foto;
+  const done=(card.cl||[]).filter(x=>x.d).length, tot=(card.cl||[]).length;
+  if(card.todo){
+    const all=tot>0&&done===tot;
+    el.innerHTML=`<div class="todo-row"><div class="chk${all?' done':''}" onclick="event.stopPropagation();">${all?'<svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>':''}</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:${all?'var(--t3)':'var(--t1)'};text-decoration:${all?'line-through':'none'};line-height:1.35">${card.title}</div><div class="card-foot" style="margin-top:6px;padding-top:6px"><span class="card-date">${card.date?'📅 '+card.date:''}</span><div class="avs">${(card.team||[]).map(p=>`<div class="av" style="background:${TC[p]};color:${TT[p]}">${p}</div>`).join('')}</div></div></div></div><span style="position:absolute;top:8px;right:8px;background:var(--purbg);color:var(--pur);border:1px solid var(--purbr);border-radius:3px;font-size:9px;font-weight:700;padding:1px 5px">TODO</span>`;
   } else {
-    el.innerHTML = `
-      <div class="card-type">
-        <span class="type-badge" style="background:${t.color}22;color:${t.color};border:1px solid ${t.color}33">${t.icon||'📷'} ${t.label||'Fotó'}</span>
-        ${card.gcal?'<span class="gcal-tag">● GCal</span>':''}
-        ${card.checklist.length?`<span style="margin-left:auto;font-size:10px;color:${doneChecks===card.checklist.length?'var(--green)':'var(--t3)'};font-family:'DM Mono',monospace">✓ ${doneChecks}/${card.checklist.length}</span>`:''}
-      </div>
-      <div class="card-title">${card.title}</div>
-      ${card.addr?`<div class="card-addr"><span style="font-size:11px">📍</span>${card.addr} · ${card.client}</div>`:''}
-      <div class="card-meta">
-        ${card.date?`<div class="card-date">📅 ${card.date}${card.time?' '+card.time:''}</div>`:''}
-        ${card.price?`<div class="card-price">€${card.price}</div>`:''}
-        <div class="card-avs">
-          ${card.team.map((p,i)=>`<div class="card-av" style="background:${TEAM_COLORS[p]||'#333'};color:${TEAM_TEXT[p]||'#fff'};margin-left:${i?'-6px':'0'}">${p}</div>`).join('')}
-        </div>
-      </div>
-    `;
+    el.innerHTML=`<div style="display:flex;align-items:center;gap:5px;margin-bottom:5px"><span class="badge" style="background:${t.bg};color:${t.c};border:1px solid ${t.br}">${t.i} ${t.l}</span>${card.gcal?'<span class="gcal-tag">● GCal</span>':''}${tot?`<span style="margin-left:auto;font-size:10px;font-weight:600;color:${done===tot?'var(--green)':'var(--t3)'}">${done===tot?'✓ ':''  }${done}/${tot}</span>`:''}</div><div class="card-title">${card.title}</div>${card.addr?`<div class="card-addr">📍 <span>${card.addr}</span> · <span style="color:var(--t2)">${card.client}</span></div>`:''}<div class="card-foot"><span class="card-date">${card.date?'📅 '+card.date+(card.time?' · '+card.time:''):''}</span>${card.price?`<span class="card-price">€${card.price}</span>`:''}<div class="avs">${(card.team||[]).map((p,i)=>`<div class="av" style="background:${TC[p]};color:${TT[p]};margin-left:${i?'-5px':'0'}">${p}</div>`).join('')}</div></div>`;
   }
-
-  el.addEventListener('click', () => openDrawer(card, ci, ki));
-  el.addEventListener('dragstart', e => {
-    dragCard = ki;
-    dragFromCol = ci;
-    setTimeout(() => el.classList.add('dragging'), 0);
-  });
-  el.addEventListener('dragend', () => {
-    el.classList.remove('dragging');
-    dragCard = null;
-    dragFromCol = null;
-    document.querySelectorAll('.col').forEach(c => c.classList.remove('drag-over'));
-  });
+  el.addEventListener('click',()=>openDrawer(card,ci,ki));
+  el.addEventListener('dragstart',()=>{dci=ci;dki=ki;setTimeout(()=>el.classList.add('dragging'),0)});
+  el.addEventListener('dragend',()=>{el.classList.remove('dragging');dci=dki=null;document.querySelectorAll('.col').forEach(c=>c.classList.remove('over'))});
   return el;
 }
 
-// ─── DRAWER ────────────────────────────────────────────
-function openDrawer(card, ci, ki) {
-  activeCard = {card, ci, ki};
-  const t = TYPE_MAP[card.type] || {};
-  document.getElementById('dr-type').innerHTML = card.todo
-    ? '<span style="background:#a78bfa22;color:var(--pur);border:1px solid #a78bfa33;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">TODO</span>'
-    : `<span class="type-badge" style="background:${t.color||'#d4a853'}22;color:${t.color||'var(--gold)'};border:1px solid ${t.color||'#d4a853'}33">${t.icon||'📷'} ${t.label||'Fotó'}</span>${card.gcal?'<span class="gcal-tag" style="margin-left:6px">● GCal</span>':''}`;
-  document.getElementById('dr-title').textContent = card.title;
-
-  // Status buttons
-  const statuses = ['📥 Beérkező','✓ Visszaigazolt','📷 Elvégzés','📦 Leadás','💶 Számlázás','✅ Kész'];
-  document.getElementById('dr-status-row').innerHTML = cols.map((c,i) =>
-    `<button class="st-btn ${i===ci?'active':''}" style="${i===ci?`background:${c.dot}33;color:${c.dot};border-color:${c.dot}55`:''}" onclick="moveCardTo(${i})">${c.title}</button>`
-  ).join('');
-
-  // Fields
-  const fields = [];
-  if (!card.todo) {
-    if (card.client) fields.push({l:'Ügyfél',v:card.client});
-    if (card.date)   fields.push({l:'Dátum',v:card.date+(card.time?' '+card.time:'')});
-    if (card.addr)   fields.push({l:'Helyszín',v:card.addr});
-    if (card.price)  fields.push({l:'Ár',v:`€${card.price}`});
-    fields.push({l:'Csapat',v:card.team.map(p=>`<div class="av-sm" style="background:${TEAM_COLORS[p]};color:${TEAM_TEXT[p]};display:inline-flex;margin-right:3px;border-radius:50%;width:20px;height:20px;align-items:center;justify-content:center;font-size:8px;font-weight:700">${p}</div>`).join('')});
+function openDrawer(card,ci,ki){
+  active={card,ci,ki};
+  const t=T[card.type]||T.foto;
+  document.getElementById('dr-badge').innerHTML=card.todo?'<span class="badge" style="background:var(--purbg);color:var(--pur);border:1px solid var(--purbr)">✓ TODO</span>':`<span class="badge" style="background:${t.bg};color:${t.c};border:1px solid ${t.br}">${t.i} ${t.l}</span>${card.gcal?'<span class="gcal-tag" style="margin-left:6px">● GCal</span>':''}`;
+  document.getElementById('dr-title').textContent=card.title;
+  document.getElementById('dr-statuses').innerHTML=cols.map((c,i)=>`<button class="stb${i===ci?' act':''}" style="${i===ci?`background:${c.dot};border-color:${c.dot}`:''}" onclick="moveTo(${i})">${c.title}</button>`).join('');
+  const flds=[];
+  if(!card.todo){
+    if(card.client)flds.push({l:'Ügyfél',v:card.client});
+    if(card.date)flds.push({l:'Dátum',v:card.date+(card.time?' · '+card.time:'')});
+    if(card.addr)flds.push({l:'Helyszín',v:card.addr});
+    if(card.price)flds.push({l:'Ár',v:`<span style="color:var(--gold);font-weight:700;font-size:15px">€${card.price}</span>`});
+    flds.push({l:'Csapat',v:(card.team||[]).map(p=>`<div class="av" style="background:${TC[p]};color:${TT[p]};display:inline-flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-right:3px">${p}</div>`).join('')});
   } else {
-    if (card.date)   fields.push({l:'Határidő',v:card.date});
-    if (card.client) fields.push({l:'Kapcsolódó',v:card.client});
+    if(card.date)flds.push({l:'Határidő',v:card.date});
+    if(card.client)flds.push({l:'Kapcsolódó',v:card.client});
   }
-  document.getElementById('dr-fields').innerHTML = fields.map(f=>`<div class="dr-field"><div class="dr-fl">${f.l}</div><div class="dr-fv">${f.v}</div></div>`).join('');
-
-  // Checklist
-  renderChecklist(card);
-  document.getElementById('dr-note').value = card.note || '';
-
+  document.getElementById('dr-fields').innerHTML=flds.map(f=>`<div class="dfield"><div class="dfl">${f.l}</div><div class="dfv">${f.v}</div></div>`).join('');
+  renderCL(card);
+  document.getElementById('dr-note').value=card.note||'';
   document.getElementById('drawer').classList.add('open');
-  document.getElementById('overlay').classList.add('on');
+  document.getElementById('ov').classList.add('on');
 }
-
-function renderChecklist(card) {
-  document.getElementById('dr-checklist').innerHTML = card.checklist.map((item,i)=>`
-    <div class="checklist-item">
-      <div class="todo-check ${item.d?'done':''}" onclick="toggleCheck(${i})">
-        ${item.d?'<svg width="8" height="8" viewBox="0 0 8 8"><path d="M1 4l2 2 4-4" stroke="white" stroke-width="1.5" fill="none"/></svg>':''}
-      </div>
-      <span style="flex:1;font-size:13px;color:${item.d?'var(--t3)':'var(--t1)'};text-decoration:${item.d?'line-through':'none'}">${item.t}</span>
-      <button onclick="removeCheck(${i})" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:14px">×</button>
-    </div>
-  `).join('');
+function renderCL(card){
+  document.getElementById('dr-cl').innerHTML=(card.cl||[]).length
+    ?(card.cl||[]).map((item,i)=>`<div class="cli"><div class="chk${item.d?' done':''}" onclick="togCL(${i})">${item.d?'<svg width="9" height="9" viewBox="0 0 9 9"><path d="M1.5 4.5l2 2 4-4" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>':''}</div><span style="flex:1;font-size:13px;color:${item.d?'var(--t3)':'var(--t1)'};text-decoration:${item.d?'line-through':'none'}">${item.t}</span><button onclick="remCL(${i})" style="background:none;border:none;color:var(--t3);cursor:pointer;font-size:16px;padding:0 4px;border-radius:4px" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--t3)'">×</button></div>`).join('')
+    :'<div style="font-size:12px;color:var(--t3);padding:5px 0">Még nincs elem</div>';
 }
-
-function toggleCheck(i) {
-  if (!activeCard) return;
-  activeCard.card.checklist[i].d = !activeCard.card.checklist[i].d;
-  renderChecklist(activeCard.card);
-  renderBoard();
+function togCL(i){if(!active)return;active.card.cl[i].d=!active.card.cl[i].d;renderCL(active.card);render()}
+function remCL(i){if(!active)return;active.card.cl.splice(i,1);renderCL(active.card)}
+function addCI(){if(!active)return;const inp=document.getElementById('cl-inp');if(!inp.value.trim())return;active.card.cl.push({t:inp.value.trim(),d:0});inp.value='';renderCL(active.card)}
+function moveTo(tc){if(!active)return;const{card,ci,ki}=active;cols[ci].cards.splice(ki,1);cols[tc].cards.push(card);closeDrawer();render()}
+function nextStatus(){if(!active)return;moveTo(Math.min(active.ci+1,cols.length-1))}
+function save(){if(active)active.card.note=document.getElementById('dr-note').value;closeDrawer();render()}
+function delCard(){if(!active)return;cols[active.ci].cards.splice(active.ki,1);closeDrawer();render()}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('ov').classList.remove('on');active=null}
+function openM(id){document.getElementById('modal-'+id).classList.add('open')}
+function closeM(id){document.getElementById('modal-'+id).classList.remove('open')}
+function setT(t){
+  selT=t;
+  document.getElementById('nt-gcal').style.cssText=t==='gcal'?'background:var(--bluebg);color:var(--blue);border:1.5px solid var(--bluebr)':'';
+  document.getElementById('nt-gcal').className=t==='gcal'?'btn':'btn btn-g';
+  document.getElementById('nt-todo').className=t==='todo'?'btn btn-p':'btn btn-g';
+  document.getElementById('nt-man').className=t==='man'?'btn btn-p':'btn btn-g';
 }
-function removeCheck(i) {
-  if (!activeCard) return;
-  activeCard.card.checklist.splice(i, 1);
-  renderChecklist(activeCard.card);
+function createCard(){
+  const title=document.getElementById('nc-t').value.trim();if(!title){alert('Adj meg egy nevet!');return}
+  const ci=parseInt(document.getElementById('nc-col').value);
+  const team=[...document.querySelectorAll('#nc-team .chip.on')].map(x=>x.dataset.p);
+  cols[ci].cards.push({id:'k'+Date.now(),gcal:selT==='gcal'?1:0,todo:selT==='todo'?1:0,type:document.getElementById('nc-s').value,title,addr:'',client:document.getElementById('nc-cl').value,date:document.getElementById('nc-d').value.slice(5),time:document.getElementById('nc-ti').value,price:parseInt(document.getElementById('nc-p').value)||0,team:team.length?team:['CD'],note:'',cl:[]});
+  document.getElementById('nc-t').value='';closeM('new-card');render();
 }
-function addCheckItem() {
-  if (!activeCard) return;
-  const inp = document.getElementById('cl-inp');
-  if (!inp.value.trim()) return;
-  activeCard.card.checklist.push({t: inp.value.trim(), d: false});
-  inp.value = '';
-  renderChecklist(activeCard.card);
+function addCol(){const n=document.getElementById('ncol-n').value.trim();if(!n)return;cols.push({id:'col'+Date.now(),title:n,dot:ncColor,cards:[]});document.getElementById('ncol-n').value='';closeM('new-col');render()}
+function pickC(el,c){ncColor=c;document.querySelectorAll('#colpicks div').forEach(x=>x.style.outline='none');el.style.outline='3px solid var(--t1)'}
+function quickAdd(ci){document.getElementById('nc-col').value=ci;openM('new-card')}
+function renameCol(ci){const n=prompt('Oszlop neve:',cols[ci].title);if(n){cols[ci].title=n;render()}}
+function syncGcal(){
+  const el=document.getElementById('sync-txt');el.textContent='Szinkronizálás...';
+  setTimeout(()=>{
+    if(!cols[0].cards.find(c=>c.id==='knew'))cols[0].cards.unshift({id:'knew',gcal:1,type:'foto',title:'Neumannstr. 42 — új GCal import',addr:'Mannheim',client:'RE/MAX',date:'05-20',time:'10:00',price:280,team:['CD'],note:'',cl:[]});
+    render();el.textContent='Szinkronizált ✓';setTimeout(()=>el.textContent='GCal szinkron',2500);
+  },900);
 }
-function moveCardTo(targetCol) {
-  if (!activeCard) return;
-  const {card, ci, ki} = activeCard;
-  cols[ci].cards.splice(ki, 1);
-  cols[targetCol].cards.push(card);
-  closeDrawer();
-  renderBoard();
+function setView(v){
+  document.getElementById('vb-b').style.cssText=v==='board'?'color:var(--gold);background:var(--gdbg)':'color:var(--t3);background:none';
+  document.getElementById('vb-l').style.cssText=v==='list'?'color:var(--gold);background:var(--gdbg)':'color:var(--t3);background:none';
+  const bw=document.getElementById('bwrap');
+  if(v==='list'){
+    bw.innerHTML=`<div style="max-width:740px;width:100%;padding:4px 0">${cols.map(col=>`<div style="margin-bottom:20px"><div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding-bottom:8px;border-bottom:2px solid var(--border)"><div style="width:9px;height:9px;border-radius:50%;background:${col.dot}"></div><span style="font-weight:700;font-size:13px">${col.title}</span><span style="font-size:11px;font-weight:600;color:var(--t3);background:var(--bg3);padding:1px 6px;border-radius:4px">${col.cards.length}</span></div>${col.cards.map(c=>`<div style="display:flex;align-items:center;gap:11px;padding:9px 13px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:5px;cursor:pointer;box-shadow:var(--sh)"><span style="font-size:15px">${c.todo?'✓':(T[c.type]||T.foto).i}</span><div style="flex:1"><div style="font-size:13px;font-weight:600">${c.title}</div><div style="font-size:11px;color:var(--t3);margin-top:1px">${c.client||''}${c.date?' · '+c.date:''}</div></div>${c.price?`<span style="font-size:12px;font-weight:700;color:var(--gold)">€${c.price}</span>`:''}</div>`).join('')||'<div style="font-size:12px;color:var(--t3);padding:5px 0">Nincs kártya</div>'}</div>`).join('')}</div>`;
+  } else {bw.innerHTML='<div class="blayout" id="board"></div>';render()}
 }
-function moveToNext() {
-  if (!activeCard) return;
-  const next = Math.min(activeCard.ci + 1, cols.length - 1);
-  moveCardTo(next);
-}
-function deleteCard() {
-  if (!activeCard) return;
-  cols[activeCard.ci].cards.splice(activeCard.ki, 1);
-  closeDrawer();
-  renderBoard();
-}
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('overlay').classList.remove('on');
-  activeCard = null;
-}
-
-// ─── MODALS ────────────────────────────────────────────
-function openModal(id) { document.getElementById('modal-'+id).classList.add('open'); }
-function closeModal(id) { document.getElementById('modal-'+id).classList.remove('open'); }
-
-let selectedCardType = 'gcal';
-function setCardType(t) {
-  selectedCardType = t;
-  ['gcal','todo','manual'].forEach(x => {
-    const b = document.getElementById('type-'+x);
-    if (b) b.style.opacity = x===t ? '1' : '.5';
-  });
-}
-setCardType('gcal');
-
-function togglePerson(el) { el.classList.toggle('on'); }
-
-function createCard() {
-  const title = document.getElementById('nc-title').value.trim();
-  if (!title) { alert('Adj meg egy nevet!'); return; }
-  const colIdx = parseInt(document.getElementById('nc-col').value);
-  const team = [...document.querySelectorAll('#nc-team .filter-chip.on')].map(x=>x.dataset.person);
-  const newCard = {
-    id: 'c'+Date.now(),
-    gcal: selectedCardType==='gcal',
-    todo: selectedCardType==='todo',
-    type: document.getElementById('nc-type').value,
-    title,
-    addr: '',
-    client: document.getElementById('nc-client').value,
-    date: document.getElementById('nc-date').value.slice(5),
-    time: document.getElementById('nc-time').value,
-    price: parseInt(document.getElementById('nc-price').value)||0,
-    team: team.length ? team : ['CD'],
-    note: '',
-    checklist: [],
-  };
-  cols[colIdx].cards.push(newCard);
-  closeModal('new-card');
-  renderBoard();
-}
-
-function addColumn() {
-  const name = document.getElementById('new-col-name').value.trim();
-  if (!name) return;
-  cols.push({id:'col'+Date.now(), title:name, dot:newColColor, cards:[]});
-  closeModal('new-col');
-  renderBoard();
-}
-
-function selColor(el, color) {
-  newColColor = color;
-  document.querySelectorAll('#modal-new-col [onclick^="selColor"]').forEach(x => x.style.border='2px solid transparent');
-  el.style.border = '2px solid white';
-}
-
-function quickAdd(ci) {
-  document.getElementById('nc-col').value = ci;
-  openModal('new-card');
-}
-
-function colMenu(ci) {
-  const name = prompt('Oszlop neve:', cols[ci].title);
-  if (name) { cols[ci].title = name; renderBoard(); }
-}
-
-function toggleTodo(ci, ki) {
-  const card = cols[ci].cards[ki];
-  if (!card.checklist.length) {
-    card.checklist = [{t: card.title, d: false}];
-    card.checklist[0].d = true;
-  }
-  renderBoard();
-}
-
-// ─── GCAL SYNC ────────────────────────────────────────
-function syncGcal() {
-  const el = document.getElementById('sync-txt');
-  el.textContent = 'Szinkronizálás...';
-  setTimeout(() => {
-    // Add a mock new card
-    const exists = cols[0].cards.find(c => c.id === 'c_new');
-    if (!exists) {
-      cols[0].cards.unshift({
-        id: 'c_new', gcal: true, type: 'foto',
-        title: 'Neumannstr. 42 — új import',
-        addr: 'Mannheim', client: 'RE/MAX',
-        date: '05-20', time: '10:00', price: 280,
-        team: ['CD'], note: '', checklist: [],
-      });
-      renderBoard();
-    }
-    el.textContent = 'Szinkronizált ✓';
-    setTimeout(() => { el.textContent = 'GCal szinkron'; }, 2000);
-  }, 1200);
-}
-
-// ─── VIEW TOGGLE ──────────────────────────────────────
-function toggleView(v) {
-  document.getElementById('vbtn-board').style.color = v==='board'?'var(--gold)':'var(--t3)';
-  document.getElementById('vbtn-list').style.color  = v==='list'?'var(--gold)':'var(--t3)';
-  const bw = document.getElementById('board-wrap');
-  if (v==='list') {
-    // Simple list fallback
-    bw.innerHTML = `<div style="max-width:720px;width:100%">${cols.map(col=>`
-      <div style="margin-bottom:20px">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)">
-          <div style="width:8px;height:8px;border-radius:50%;background:${col.dot}"></div>
-          <span style="font-weight:600;font-size:14px">${col.title}</span>
-          <span style="font-size:11px;color:var(--t3);font-family:'DM Mono',monospace">${col.cards.length}</span>
-        </div>
-        ${col.cards.map(card=>`
-          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;cursor:pointer">
-            <div style="font-size:15px">${card.todo?'✓':(TYPE_MAP[card.type]||{icon:'📷'}).icon}</div>
-            <div style="flex:1"><div style="font-size:13px;font-weight:600">${card.title}</div><div style="font-size:11px;color:var(--t3)">${card.client||''}${card.date?' · '+card.date:''}</div></div>
-            ${card.price?`<div style="font-size:12px;font-weight:700;color:var(--gold);font-family:'DM Mono',monospace">€${card.price}</div>`:''}
-            <div style="display:flex">${card.team.map(p=>`<div style="width:22px;height:22px;border-radius:50%;background:${TEAM_COLORS[p]};color:${TEAM_TEXT[p]};display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700">${p}</div>`).join('')}</div>
-          </div>
-        `).join('')}
-      </div>
-    `).join('')}</div>`;
-  } else {
-    bw.innerHTML = '<div class="board-layout" id="board"></div>';
-    renderBoard();
-  }
-}
-
-// close modals on overlay click
-document.querySelectorAll('.mover').forEach(m => m.addEventListener('click', e => { if(e.target===m) m.classList.remove('open'); }));
-
-// ─── INIT ─────────────────────────────────────────────
-renderBoard();
+document.querySelectorAll('.mover').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
+render();
 </script>
 </body>
 </html>
