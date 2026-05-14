@@ -176,7 +176,7 @@ select.inp{cursor:pointer}
     <div class="tbn" onclick="navPage('staff')" id="nav-staff">👥 Mitarbeiter</div>
   </div>
   <div class="tb-r">
-    <div style="font-size:10px;font-weight:700;color:var(--t3);background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-family:monospace">v1.3 · 2026-05-14 06:51</div>
+    <div id="ver-badge" style="font-size:10px;font-weight:700;color:var(--t3);background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-family:monospace">v1.4</div>
     <div class="sync-btn" onclick="syncGcal()">
       <span class="dot" style="background:var(--green)"></span>
       <span id="sync-txt">GCal szinkron</span>
@@ -825,6 +825,19 @@ document.getElementById('nc-d').value=new Date().toISOString().slice(0,10);
 // Init
 renderStaffFilters();
 render();
+
+// Version badge with correct Berlin timezone
+(function(){
+  function updateVer(){
+    var now=new Date();
+    var s=now.toLocaleString('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(' ','T');
+    var date=s.slice(0,10), time=s.slice(11,16);
+    var el=document.getElementById('ver-badge');
+    if(el) el.textContent='v1.4 · '+date+' '+time;
+  }
+  updateVer();
+  setInterval(updateVer,60000);
+})();
 </script>
 </body>
 </html>
